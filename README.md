@@ -57,3 +57,8 @@ Note, you can update more than one sheet by adding multiple items to the array.
 Build the application to your preferred target, place your client_secret.json and AppConfig.json in your release path and run the program.
 
 NOTE: Has not been tested in any other platform other than Windows 10 (winx64)
+
+## What you need to maintain manually
+Any time you invest more, you need to add an 'invested amount' line in the box at the top right.  This will update all values *except* **Column P**.  You will need to put your new 'total invested amount' in the bottom row and copy it down all rows from there.  I'll fix this at some point in the future hopefully!
+
+Other than that, you can just update the values in the crypto box at the top when you buy more!  Happy HODLing!
