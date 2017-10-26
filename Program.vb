@@ -1,4 +1,4 @@
-imports System
+imports System
 imports System.IO
 imports System.net
 imports System.Collections
@@ -23,14 +23,13 @@ Module Program
 
     Sub Main(args As String())
         
+		'### Retrieve the configuration from the appconfig.json file:
 		dim builder as new ConfigurationBuilder() 
 		builder.SetBasePath(Directory.GetCurrentDirectory())
         builder.AddJsonFile("appconfig.json")
-
         Configuration = builder.Build()
 		
-		console.writeline("Loaded Configuration")
-		
+		'### Convert the appconfig JSON to a strongly typed list of our Sheet Details:
 		dim sheetList as new list(of SheetDetail)
 		Configuration.GetSection("sheets").Bind(SheetList)
 		for each sd as SheetDetail in SheetList
@@ -43,25 +42,27 @@ Module Program
 		    credential = GoogleCredential.FromStream(stream).CreateScoped(Scopes)
 		end using
 
-		'//Create Google Sheets API service.
+		'### Create Google Sheets API service.
 		service = new SheetsService(new BaseClientService.Initializer() with {
 			.HttpClientInitializer = credential,
 			.ApplicationName = ApplicationName
 		})
 		
-		Console.writeline("Get EURUSD")
-		EURUSDRate = GetEURUSD()
-		
-		Console.writeline("Get Crypto")
-		LoadAllCurrencies()
-		
-		'Begin Logging
-		ReadEntries(sheetList)
+		if SheetList.count > 0 then
+			Console.writeline("Get EURUSD")
+			EURUSDRate = GetEURUSD(Sheetlist(0).id, sheetlist(0).tabname)
+			
+			Console.writeline("Get Crypto")
+			LoadAllCurrencies()
+			
+			'Begin Logging
+			ReadEntries(sheetList)
+		end if
     End Sub
 	
-	private function GetEURUSD() as decimal
+	private function GetEURUSD(sheetID as string, tabname as string) as decimal
 		'### Get the initial range
-		dim request as SpreadsheetsResource.ValuesResource.GetRequest = service.Spreadsheets.Values.Get("1Q_2IIJHYOualB2RBwbYVvyq16FnqDydCP4COGjok2tA", "JPL Portfolio!K9")
+		dim request as SpreadsheetsResource.ValuesResource.GetRequest = service.Spreadsheets.Values.Get(sheetID, tabname & "!K9")
 		dim response as Object = request.Execute()
 		
 		'### Values = raw objects
