@@ -29,6 +29,8 @@ To do this you need to perform multiple steps:
  - Visit the "Credentials" area and "Manage Service Accounts"
  - Add a new service account, I chose the 'Project Owner' role, tick "Furnish Private Key" and choose the JSON method
  - Rename the file that is downloaded to 'client_secret.json' and deploy this in the root of your application install
+
+You also need to SHARE your spreadsheet to this service account.  Open the client_secret.json file, and copy the value of the "client_email" property.  On Google Sheets, click "Share" and share to this email address, granting EDIT access.
  
 ### 3. AppConfig.json
 The AppConfig.json file will store the details of which spreadsheet to connect to and which tab to update. 
