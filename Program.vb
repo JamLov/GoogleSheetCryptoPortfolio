@@ -21,8 +21,7 @@ Module Program
 	
 	property Configuration as IConfigurationRoot
 
-    Sub Main(args As String())
-        
+	Sub Main(args As String())
 		'### Retrieve the configuration from the appconfig.json file:
 		dim builder as new ConfigurationBuilder() 
 		builder.SetBasePath(Directory.GetCurrentDirectory())
@@ -69,7 +68,7 @@ Module Program
 		dim response as Object = request.Execute()
 		
 		'### Values = raw objects
-	    dim values as IList(of IList(of Object)) = response.Values
+		dim values as IList(of IList(of Object)) = response.Values
 		console.writeline( "EURUSD: " & values(0)(0) )
 		return values(0)(0)
 	end function
@@ -126,7 +125,7 @@ Module Program
 		
 		CheckCurrencies(spreadsheetid, SheetName, mainFIAT)
 
-	    dim range as string = $"{sheetName}!{historyrange}"
+		dim range as string = $"{sheetName}!{historyrange}"
 		console.writeline("*****************")
 		console.writeline(" Sheet Range: " & range)
 		console.writeline("******************")
@@ -136,13 +135,13 @@ Module Program
 		dim response as Object = request.Execute()
 		
 		'### Values = raw objects
-	    dim values as IList(of IList(of Object)) = response.Values
+		dim values as IList(of IList(of Object)) = response.Values
 		
 		'### parse values into nice list of typed objects
 		dim allHistoryRows as new list(of HistoryRow)
-	    if (values isnot nothing andalso values.Count > 0) then 
-	        for each row as list(of Object) in values
-	        	try
+		if (values isnot nothing andalso values.Count > 0) then 
+			for each row as list(of Object) in values
+				try
 					Console.WriteLine(renderRow(row))
 				catch e as Exception
 					Console.WriteLine(e.ToString())
@@ -192,8 +191,8 @@ Module Program
 		valRange.Values.add( GetCurrentRow() )
 		
 		dim updateRequest = service.Spreadsheets.Values.Update(valRange, SpreadsheetId, range)
-	    updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED
-	    dim appendReponse = updateRequest.Execute()
+		updateRequest.ValueInputOption = SpreadsheetsResource.ValuesResource.UpdateRequest.ValueInputOptionEnum.USERENTERED
+		dim appendReponse = updateRequest.Execute()
 		
 	end sub
 	
