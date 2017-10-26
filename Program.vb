@@ -1,4 +1,4 @@
-imports System
+imports System
 imports System.IO
 imports System.net
 imports System.Collections
@@ -25,7 +25,7 @@ Module Program
         
 		'### Retrieve the configuration from the appconfig.json file:
 		dim builder as new ConfigurationBuilder() 
-		builder.SetBasePath(Directory.GetCurrentDirectory())
+        builder.SetBasePath(Directory.GetCurrentDirectory())
         builder.AddJsonFile("appconfig.json")
         Configuration = builder.Build()
 		
