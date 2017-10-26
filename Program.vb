@@ -60,8 +60,11 @@ Module Program
 		end if
     End Sub
 	
+	
+	'### Get the initial range to retrieve the EURUSD value.
+	'### The google sheet uses the GOOGLEFINANCE() command to convert EUR/USD so we'll read the value from the 
+	'### sheet rather than using an API to get this
 	private function GetEURUSD(sheetID as string, tabname as string) as decimal
-		'### Get the initial range
 		dim request as SpreadsheetsResource.ValuesResource.GetRequest = service.Spreadsheets.Values.Get(sheetID, tabname & "!K9")
 		dim response as Object = request.Execute()
 		
@@ -92,6 +95,9 @@ Module Program
 		console.writeline( c.tostring.tolower & "/" & f.tostring.tolower & ": " & cr.rate)
 		return cr
 	end function
+	
+	'### Get a crypto value based on a FIAT base, from a specific market from the 
+	'### cryptowat.ch APIs
 	private function getCurrencyValue(c as Crypto, f as fiat, market as string) as decimal
 		dim theURL as string = GetCryptoWatchURL( f.tostring.toLower(), c.toString.toLower(), market)
 		dim stringResponse as string = ""
