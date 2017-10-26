@@ -29,6 +29,8 @@ To do this you need to perform multiple steps:
  - Visit the "Credentials" area and "Manage Service Accounts"
  - Add a new service account, I chose the 'Project Owner' role, tick "Furnish Private Key" and choose the JSON method
  - Rename the file that is downloaded to 'client_secret.json' and deploy this in the root of your application install
+
+You also need to SHARE your spreadsheet to this service account.  Open the client_secret.json file, and copy the value of the "client_email" property.  On Google Sheets, click "Share" and share to this email address, granting EDIT access.
  
 ### 3. AppConfig.json
 The AppConfig.json file will store the details of which spreadsheet to connect to and which tab to update. 
@@ -55,3 +57,8 @@ Note, you can update more than one sheet by adding multiple items to the array.
 Build the application to your preferred target, place your client_secret.json and AppConfig.json in your release path and run the program.
 
 NOTE: Has not been tested in any other platform other than Windows 10 (winx64)
+
+## What you need to maintain manually
+Any time you invest more, you need to add an 'invested amount' line in the box at the top right.  This will update all values *except* **Column P**.  You will need to put your new 'total invested amount' in the bottom row and copy it down all rows from there.  I'll fix this at some point in the future hopefully!
+
+Other than that, you can just update the values in the crypto box at the top when you buy more!  Happy HODLing!
