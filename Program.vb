@@ -25,9 +25,9 @@ Module Program
         
 		'### Retrieve the configuration from the appconfig.json file:
 		dim builder as new ConfigurationBuilder() 
-        builder.SetBasePath(Directory.GetCurrentDirectory())
-        builder.AddJsonFile("appconfig.json")
-        Configuration = builder.Build()
+		builder.SetBasePath(Directory.GetCurrentDirectory())
+		builder.AddJsonFile("appconfig.json")
+		Configuration = builder.Build()
 		
 		'### Convert the appconfig JSON to a strongly typed list of our Sheet Details:
 		dim sheetList as new list(of SheetDetail)
