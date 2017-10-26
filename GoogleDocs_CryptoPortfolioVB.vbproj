@@ -7,13 +7,20 @@
     <PackageReference Include="Google.Apis" Version="1.28.0" />
     <PackageReference Include="Google.APIs.Core" Version="1.28.0" />
     <PackageReference Include="google.apis.sheets.v4" Version="1.28.0.964" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.JSON" Version="2.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
     <PackageReference Include="system.collections.nongeneric" Version="4.3.0" />
     <PackageReference Include="system.io" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="appconfig.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
     <None Update="client_secret.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 </Project>
